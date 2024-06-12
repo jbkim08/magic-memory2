@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import SingleCard from "./components/SingleCard";
 
 //퍼블릭 폴더의 이미지들을 사용하기 쉽게 정리
 const cardImages = [
@@ -33,12 +34,7 @@ function App() {
 
       <div className="card-grid">
         {cards.map((card) => (
-          <div className="card" key={card.id}>
-            <div>
-              <img className="front" src={card.src} alt="card front"></img>
-              <img className="back" src="/img/cover.png" alt="card back"></img>
-            </div>
-          </div>
+          <SingleCard card={card} key={card.id} />
         ))}
       </div>
     </div>
