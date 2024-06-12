@@ -2,13 +2,13 @@ import React from "react";
 import "./SingleCard.css";
 
 //props 대신에 {프로퍼티이름}
-const SingleCard = ({ card, handleChoice }) => {
+const SingleCard = ({ card, handleChoice, flipped }) => {
   const handleClick = () => {
     handleChoice(card);
   };
   return (
     <div className="card">
-      <div>
+      <div className={flipped ? "flipped" : ""}>
         <img className="front" src={card.src} alt="card front"></img>
         <img
           onClick={handleClick}
