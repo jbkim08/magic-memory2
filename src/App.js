@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
 
@@ -32,6 +32,24 @@ function App() {
   function handleChoice(card) {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   }
+  //선택한 카드들을 비교하기
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      if (choiceOne.src === choiceTwo.src) {
+        console.log("카드를 맞췄어요!");
+        resetTurn();
+      } else {
+        console.log("틀렸네요!");
+        resetTurn();
+      }
+    }
+  }, [choiceOne, choiceTwo]);
+  // 리셋 함수 (선택들을 초기화)
+  const resetTurn = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns((prev) => prev + 1); //맞춘 횟수 1증가
+  };
 
   return (
     <div className="App">
