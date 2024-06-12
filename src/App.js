@@ -49,7 +49,7 @@ function App() {
         resetTurn();
       } else {
         console.log("틀렸네요!");
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
