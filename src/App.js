@@ -26,6 +26,8 @@ function App() {
       .map((card) => ({ ...card, id: Math.random() }));
 
     setCards(랜덤카드);
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setTurns(0);
   };
   //console.log(cards, turns);
@@ -62,6 +64,10 @@ function App() {
     setTurns((prev) => prev + 1); //맞춘 횟수 1증가
     setDisabled(false); //카드 선택가능
   };
+  //처음 시작시 자동 게임시작
+  useEffect(() => {
+    shuffleCards();
+  }, []);
 
   return (
     <div className="App">
@@ -79,6 +85,7 @@ function App() {
           />
         ))}
       </div>
+      <p>턴수: {turns}</p>
     </div>
   );
 }
