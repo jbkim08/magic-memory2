@@ -18,6 +18,7 @@ function App() {
   const [turns, setTurns] = useState(0); // 턴 횟수
   const [choiceOne, setChoiceOne] = useState(null); //첫번째 선택 카드
   const [choiceTwo, setChoiceTwo] = useState(null); //두번째 선택 카드
+  const [disabled, setDisabled] = useState(false); //true일때 선택못하게
   //카드 섞기
   const shuffleCards = () => {
     const 랜덤카드 = [...cardImages, ...cardImages]
@@ -35,6 +36,7 @@ function App() {
   //선택한 카드들을 비교하기
   useEffect(() => {
     if (choiceOne && choiceTwo) {
+      setDisabled(true); //두개 카드를 선택시 다른선택 선택불가!
       if (choiceOne.src === choiceTwo.src) {
         console.log("카드를 맞췄어요!");
         setCards((prevCards) => {
@@ -58,6 +60,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prev) => prev + 1); //맞춘 횟수 1증가
+    setDisabled(false); //카드 선택가능
   };
 
   return (
@@ -72,6 +75,7 @@ function App() {
             card={card}
             handleChoice={handleChoice}
             key={card.id}
+            disabled={disabled}
           />
         ))}
       </div>

@@ -2,9 +2,11 @@ import React from "react";
 import "./SingleCard.css";
 
 //props 대신에 {프로퍼티이름}
-const SingleCard = ({ card, handleChoice, flipped }) => {
+const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
   const handleClick = () => {
-    handleChoice(card);
+    if (!disabled) {
+      handleChoice(card);
+    }
   };
   return (
     <div className="card">
