@@ -39,7 +39,7 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true); //두개 카드를 선택시 다른선택 선택불가!
-      if (choiceOne.src === choiceTwo.src) {
+      if (choiceOne.src === choiceTwo.src && choiceOne.id !== choiceTwo.id) {
         console.log("카드를 맞췄어요!");
         setCards((prevCards) => {
           return prevCards.map((card) => {
