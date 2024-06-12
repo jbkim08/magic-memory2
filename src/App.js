@@ -4,12 +4,12 @@ import SingleCard from "./components/SingleCard";
 
 //퍼블릭 폴더의 이미지들을 사용하기 쉽게 정리
 const cardImages = [
-  { src: "/img/helmet-1.png" },
-  { src: "/img/potion-1.png" },
-  { src: "/img/ring-1.png" },
-  { src: "/img/scroll-1.png" },
-  { src: "/img/shield-1.png" },
-  { src: "/img/sword-1.png" },
+  { src: "/img/helmet-1.png", matched: false },
+  { src: "/img/potion-1.png", matched: false },
+  { src: "/img/ring-1.png", matched: false },
+  { src: "/img/scroll-1.png", matched: false },
+  { src: "/img/shield-1.png", matched: false },
+  { src: "/img/sword-1.png", matched: false },
 ];
 
 function App() {
@@ -37,6 +37,15 @@ function App() {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
         console.log("카드를 맞췄어요!");
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true }; //matched를 업데이트
+            } else {
+              return card; //그대로둠
+            }
+          });
+        });
         resetTurn();
       } else {
         console.log("틀렸네요!");
